@@ -1,10 +1,15 @@
 # topline-front
 
+[x] Add book
+[x] Search by title, desc and author
+[x] Pagination
+[ ] Cache / Vuex
+
 > TopLine Vue.js
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 

@@ -7,6 +7,7 @@
           name="search"
           label="Search by Title, Description and Author name"
           id="search"
+          @input="fetchBooks"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -90,12 +91,9 @@ export default {
         params: {
           limit: this.pagination.rowsPerPage,
           offset: this.pagination.page,
+          where: this.search,
         },
       };
-
-      if (this.where) {
-        Object.assign(options.params, { where: this.where });
-      }
 
       const books = await this.$http
         .get('http://localhost:3000/api', options)
@@ -112,14 +110,6 @@ export default {
   },
 
   watch: {
-    search: {
-      handler(val) {
-        this.where = `users.user_name like "%${val}%" or books.title like "%${val}%" or books.description like "%${val}%"`;
-
-        this.fetchBooks();
-      },
-    },
-
     $route: {
       handler(routeVal) {
         this.where.author = routeVal.query.author;

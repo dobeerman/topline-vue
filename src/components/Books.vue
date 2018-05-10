@@ -29,22 +29,34 @@
           sm6
           md4
           lg3
+          d-flex
         >
+            <!-- height="450" -->
           <v-card
-            height="450"
             :to="{ name: 'BooksPage', params: { id: props.item.id } }"
           >
             <v-card-media
               :src="props.item.imageUrl"
               height="150px">
+              <v-card-title primary-title>
+                  <span class="title white--text">{{ props.item.title }}</span>
+              </v-card-title>
             </v-card-media>
-            <v-card-title primary-title>
-                <span class="title">{{ props.item.title }}</span>
-            </v-card-title>
-            <v-card-text>
-              <h4>{{ props.item.user_name }}</h4>
-              <div v-html="props.item.description"></div>
+            <v-list-tile class="pl-0 pt-3">
+              <v-list-tile-avatar>
+                <img :src="props.item.avatar">
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <v-list-tile-title
+                  v-html="props.item.user_name"
+                ></v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-card-text pb-3>
               <h4>{{ props.item.date | date }}</h4>
+            </v-card-text>
+            <v-card-text>
+              <div v-html="props.item.description"></div>
             </v-card-text>
           </v-card>
         </v-flex>
